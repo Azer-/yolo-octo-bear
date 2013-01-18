@@ -62,7 +62,7 @@ int main( int ac, char **av )
 
             LS_ADDMSG( LogService::NOTICE, "main", tmp.str( ) );
 
-            parser->Parse( file );
+            parser->Parse( file ); // Just save and copy me or somethinnng !!
             htm->CreateHTM( );
             unsigned int currentNR = htm->TwoPointsCorrelation( radius, delta );
             nr += currentNR;

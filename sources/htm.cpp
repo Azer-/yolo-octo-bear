@@ -22,7 +22,7 @@ bool ICoDF_HTM::HTM::CreateHTM( )
     PointInfo_t* pt;
     while ( !this->_pointList.empty( ) )
     {
-        pt = _pointList.front( );
+        pt = _pointList.front( );//Fixme pop renvoie pareil que front
         this->_pointList.pop( );
         this->AssignPoint( pt );
     }
@@ -103,6 +103,10 @@ double ICoDF_HTM::HTM::getMinDec( void )
     return this->_decQueue.top( );
 }
 
+/**
+ * Fixme : Loop pop alors que ca devrait balancer juste le dernier (semble t'il ?)
+ * 
+ */
 double ICoDF_HTM::HTM::getMaxRa( void )
 {
     double raMax;
@@ -114,6 +118,10 @@ double ICoDF_HTM::HTM::getMaxRa( void )
     return raMax;
 }
 
+/**
+ * Fixme : Loop pop alors que ca devrait balancer juste le dernier (semble t'il ?)
+ * 
+ */
 double ICoDF_HTM::HTM::getMaxDec( void )
 {
     double decMax;
@@ -329,7 +337,13 @@ void ICoDF_HTM::HTM::Delete( )
 }
 
 /// TwoPointsCorrelation
-
+/**
+ * Fixme : I'm UGLYYY !!
+ * 
+ * @param radius
+ * @param delta
+ * @return 
+ */
 unsigned int ICoDF_HTM::HTM::TwoPointsCorrelation( double& radius, double& delta )
 {
     unsigned int nbPairs = 0;
@@ -561,6 +575,10 @@ void ICoDF_HTM::HTM::CreateOctahedron( void )
     this->_octahedron->_rootTrixels[7]->_vertices[2] = v1;
 }
 
+/**
+ * Fix me : Make me reentrant and do me into threads ( if I'm const )
+ * 
+ */
 void ICoDF_HTM::HTM::Display( trixel_t* current, std::ofstream& fstream )
 {
     if ( current != NULL )
